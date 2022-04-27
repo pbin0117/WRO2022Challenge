@@ -14,9 +14,9 @@ class Robot:
         self.armPower = 500
         self.armDegree = 160
 
-    def lineFollowing(self, countTarget, isForward=True, lookForColor=False, lookingSensor=None, color=None, terminalTime=1000):
-        lineFollowingReflection(self.leftWheel, self.rightWheel, countTarget, isForward=isForward,
-                                lookForColor=lookForColor, lookingSensor=lookingSensor, color=color, terminalTime=terminalTime)
+    def lineFollowing(self, countTarget, isForward=True, lookForColor=False, lookingSensor=None, colors=None, terminalTime=1000):
+        return lineFollowingReflection(self.leftWheel, self.rightWheel, countTarget, isForward=isForward,
+                                       lookForColor=lookForColor, lookingSensor=lookingSensor, colors=colors, terminalTime=terminalTime)
 
     def clawOpen(self):
         self.claw.run(self.clawPower - 200)
@@ -33,11 +33,15 @@ class Robot:
         wait(1200)
         self.claw.stop()
 
-    def armUp(self):
-        self.armLift.run_angle(self.armPower, +self.armDegree)
+    def armUp(self, degree=0):
+        if degree == 0:
+            degree = self.armDegree
+        self.armLift.run_angle(self.armPower, +degree)
 
-    def armDown(self):
-        self.armLift.run_angle(self.armPower, -self.armDegree)
+    def armDown(self, degree=0):
+        if degree == 0:
+            degree = self.armDegree
+        self.armLift.run_angle(self.armPower, -degree)
 
     def turnForward(self, angle):
         if angle == 0:
@@ -72,8 +76,8 @@ class Robot:
         self.rightWheel.run_angle(200, 90, wait=True)
 
     def adjustToWater(self):
-        self.leftWheel.run_angle(50, -90, wait=False)
-        self.rightWheel.run_angle(50, -90, wait=True)
+        self.leftWheel.run_angle(100, -45, wait=False)
+        self.rightWheel.run_angle(100, -45, wait=True)
 
     def adjustToTable(self, direction):  # right is +
         self.leftWheel.run_angle(300, 300, wait=False)

@@ -25,6 +25,8 @@ def lineFollowingReflection(leftWheel, rightWheel, countTarget, isForward=True, 
     # 20 <= WHITE < 100
     WHITE = 20
 
+    finalColor = None
+
     while lineFollowingMode:
         leftLight = lightSensorLeft.reflection()
         rightLight = lightSensorRight.reflection()
@@ -63,11 +65,13 @@ def lineFollowingReflection(leftWheel, rightWheel, countTarget, isForward=True, 
                 for color in colors:
                     if lookingSensor.color() == color:
                         print("successS!")
+                        finalColor = color
                         lineFollowingMode = False
             else:
                 for color in colors:
                     if lightSensorLeft.color() == color:
                         print("ayo")
+                        finalColor = color
                         lineFollowingMode = False
 
         # or reached the terminal time
@@ -77,4 +81,5 @@ def lineFollowingReflection(leftWheel, rightWheel, countTarget, isForward=True, 
 
     leftWheel.stop()
     rightWheel.stop()
-    print("Ended linefollowing mode")
+
+    return finalColor

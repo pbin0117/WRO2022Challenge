@@ -24,6 +24,7 @@ objectDetector = ColorSensor(Port.S2)
 bob = Robot(leftWheel, rightWheel, armLift, claw, objectDetector)
 
 timeTillCenter = 1
+withWaterBottleDegree = 80
 
 # Write your program here.
 ev3.speaker.beep()
@@ -33,7 +34,7 @@ def task2():
     bob.armDown()
 
     bob.lineFollowing(100, lookForColor=True,
-                      lookingSensor=objectDetector, color=Color.GREEN)
+                      lookingSensor=objectDetector, colors=[Color.GREEN])
 
     bob.armUp()
     bob.adjustToLaundry()
@@ -51,7 +52,7 @@ def task3():
     bob.armDown()
 
     bob.lineFollowing(100, lookForColor=True,
-                      lookingSensor=objectDetector, color=Color.GREEN)
+                      lookingSensor=objectDetector, colors=[Color.GREEN])
 
     bob.armUp()
     bob.adjustToLaundry()
@@ -75,7 +76,7 @@ def task3():
     bob.putDown()
 
 
-def task4():
+def task4():  # put the water bottle on the table
     bob.lineFollowing(1)
     # TODO: water Bottle adjust
     bob.adjustToWater()
@@ -94,7 +95,7 @@ def task4():
     bob.lineFollowing(2)
     bob.turnForward(-90)
 
-    bob.lineFollowing(1000, lookForColor=True, color=Color.BLUE)
+    bob.lineFollowing(1000, lookForColor=True, colors=[Color.BLUE])
 
     bob.adjustToTable(1)  # turning right
 
@@ -120,7 +121,7 @@ def task5():
     bob.turnForward(-90)  # 7
     print("time to pick up")
     bob.lineFollowing(100, lookForColor=True,
-                      lookingSensor=objectDetector, color=Color.GREEN)
+                      lookingSensor=objectDetector, colors=[Color.GREEN])
 
     # print("arrived!")
     bob.armUp()
@@ -149,17 +150,20 @@ def task5():
 def task6():  # for the ball
 
     bob.lineFollowing(100, lookForColor=True,
-                      lookingSensor=objectDetector, color=Color.RED)
+                      lookingSensor=objectDetector, colors=[Color.RED])
 
     bob.pickUp()
 
 
 def task7():
-     bob.lineFollowing(1)
-    # TODO: water Bottle adjust
-    bob.adjustToWater()
 
-    bob.pickUp()
+    bob.lineFollowing(1)
+    # TODO: water Bottle adjust
+    # bob.adjustToWater()
+
+    bob.clawOpen()
+    bob.armDown()
+    bob.clawClose()
     bob.turnForward(90)
 
     bob.lineFollowing(1)
@@ -172,4 +176,42 @@ def task7():
     # between the two indicating blocks
 
     bob.turnForward(90)
-    bob.
+
+    # TODO: the arm has to be lowered at this point
+
+    tableDir = -1  # negative is left
+    for _ in range(2):
+        indColor = bob.lineFollowing(100, lookForColor=True,
+                                     lookingSensor=objectDetector, colors=[Color.RED, Color.GREEN])
+
+        print(indColor)
+        if indColor == Color.GREEN:  # Water bottle room!
+            print("Water bottle")
+            bob.turnForward(180)
+            break
+
+        if indColor == Color.RED:  # frick
+            tableDir = 1  # positive is right
+
+        bob.turnForward(180)
+
+    print("out of function")
+    bob.lineFollowing(1)
+    bob.turnForward(-90 * tableDir)  # opposite of table dir
+    # out of decision path
+
+    # pull claw back up
+    bob.armUp()
+
+    bob.lineFollowing(1)
+    bob.turnForward(-90 * tableDir)  # room dir is opposite of table dir
+
+    bob.lineFollowing(1000, lookForColor=True, colors=[Color.RED, Color.GREEN])
+
+    bob.adjustToTable(tableDir)
+
+    bob.clawOpen()
+
+
+bob.clawClose()
+task7()
