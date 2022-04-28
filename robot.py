@@ -76,8 +76,8 @@ class Robot:
         self.rightWheel.run_angle(200, 90, wait=True)
 
     def adjustToWater(self):
-        self.leftWheel.run_angle(100, -45, wait=False)
-        self.rightWheel.run_angle(100, -45, wait=True)
+        self.leftWheel.run_angle(100, -90, wait=False)
+        self.rightWheel.run_angle(100, -90, wait=True)
 
     def adjustToTable(self, direction):  # right is +
         self.leftWheel.run_angle(300, 300, wait=False)

@@ -161,9 +161,7 @@ def task7():
     # TODO: water Bottle adjust
     # bob.adjustToWater()
 
-    bob.clawOpen()
-    bob.armDown()
-    bob.clawClose()
+    bob.pickUp()
     bob.turnForward(90)
 
     bob.lineFollowing(1)
@@ -172,10 +170,15 @@ def task7():
     bob.lineFollowing(1)
     bob.turnForward(-90)
 
-    bob.lineFollowing(1)
-    # between the two indicating blocks
+    bob.lineFollowing(2)  # go past between the indicating blocks
+    bob.putDown()  # put down water bottle
 
+    bob.lineFollowing(3, isForward=False)
+
+    bob.lineFollowing(2)
     bob.turnForward(90)
+
+    bob.armDown()
 
     # TODO: the arm has to be lowered at this point
 
@@ -204,6 +207,7 @@ def task7():
     bob.armUp()
 
     bob.lineFollowing(1)
+    bob.pickUp()
     bob.turnForward(-90 * tableDir)  # room dir is opposite of table dir
 
     bob.lineFollowing(1000, lookForColor=True, colors=[Color.RED, Color.GREEN])

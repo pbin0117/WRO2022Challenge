@@ -31,29 +31,55 @@ def lineFollowingReflection(leftWheel, rightWheel, countTarget, isForward=True, 
         leftLight = lightSensorLeft.reflection()
         rightLight = lightSensorRight.reflection()
 
-        # go straight
-        if leftLight >= WHITE and rightLight >= WHITE:
-            leftWheel.run(100 * speedScale)
-            rightWheel.run(100 * speedScale)
-            canCount = True
+        # TODO: rewrite but inverse for going backward
+        if isForward:
+            # go straight
+            if leftLight >= WHITE and rightLight >= WHITE:
+                leftWheel.run(100 * speedScale)
+                rightWheel.run(100 * speedScale)
+                canCount = True
 
-        # if black, white it's swaying to the right, hence should turn left
-        if leftLight < WHITE and rightLight >= WHITE:
-            leftWheel.run(70 * speedScale)
-            rightWheel.run(120 * speedScale)
-            canCount = True
+            # if black, white it's swaying to the right, hence should turn left
+            if leftLight < WHITE and rightLight >= WHITE:
+                leftWheel.run(70 * speedScale)
+                rightWheel.run(120 * speedScale)
+                canCount = True
 
-        # if white, black, it's swaying to the left, hence should turn right
-        if leftLight >= WHITE and rightLight < WHITE:
-            leftWheel.run(120 * speedScale)
-            rightWheel.run(70 * speedScale)
-            canCount = True
+            # if white, black, it's swaying to the left, hence should turn right
+            if leftLight >= WHITE and rightLight < WHITE:
+                leftWheel.run(120 * speedScale)
+                rightWheel.run(70 * speedScale)
+                canCount = True
 
-        # counting the intersections it passes through
-        if leftLight < WHITE and rightLight < WHITE and canCount:
-            count += 1
-            print(count)
-            canCount = False
+            # counting the intersections it passes through
+            if leftLight < WHITE and rightLight < WHITE and canCount:
+                count += 1
+                print(count)
+                canCount = False
+        else:
+            # go straight
+            if leftLight >= WHITE and rightLight >= WHITE:
+                leftWheel.run(100 * speedScale)
+                rightWheel.run(100 * speedScale)
+                canCount = True
+
+            # if black, white it's swaying to the right, hence should turn left
+            if leftLight < WHITE and rightLight >= WHITE:
+                leftWheel.run(120 * speedScale)
+                rightWheel.run(70 * speedScale)
+                canCount = True
+
+            # if white, black, it's swaying to the left, hence should turn right
+            if leftLight >= WHITE and rightLight < WHITE:
+                leftWheel.run(70 * speedScale)
+                rightWheel.run(120 * speedScale)
+                canCount = True
+
+            # counting the intersections it passes through
+            if leftLight < WHITE and rightLight < WHITE and canCount:
+                count += 1
+                print(count)
+                canCount = False
 
         # end line following mode
         # if count is equal to designated value.
