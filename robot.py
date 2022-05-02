@@ -12,7 +12,7 @@ class Robot:
 
         self.clawPower = 1700
         self.armPower = 500
-        self.armDegree = 160
+        self.armDegree = 180
 
     def lineFollowing(self, countTarget, speed=4, isForward=True, lookForColor=False, lookingSensor=None, colors=None, terminalTime=1000):
         return lineFollowingReflection(self.leftWheel, self.rightWheel, countTarget, speed=speed, isForward=isForward,
