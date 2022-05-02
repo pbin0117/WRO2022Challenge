@@ -14,8 +14,8 @@ class Robot:
         self.armPower = 500
         self.armDegree = 160
 
-    def lineFollowing(self, countTarget, isForward=True, lookForColor=False, lookingSensor=None, colors=None, terminalTime=1000):
-        return lineFollowingReflection(self.leftWheel, self.rightWheel, countTarget, isForward=isForward,
+    def lineFollowing(self, countTarget, speed=4, isForward=True, lookForColor=False, lookingSensor=None, colors=None, terminalTime=1000):
+        return lineFollowingReflection(self.leftWheel, self.rightWheel, countTarget, speed=speed, isForward=isForward,
                                        lookForColor=lookForColor, lookingSensor=lookingSensor, colors=colors, terminalTime=terminalTime)
 
     def clawOpen(self):

@@ -25,6 +25,8 @@ bob = Robot(leftWheel, rightWheel, armLift, claw, objectDetector)
 
 timeTillCenter = 1
 withWaterBottleDegree = 80
+SLOWMODE = 3
+DEFAULTMODE = 4
 
 # Write your program here.
 ev3.speaker.beep()
@@ -157,7 +159,7 @@ def task6():  # for the ball
 
 def task7():
 
-    bob.lineFollowing(1)
+    bob.lineFollowing(1, speed=SLOWMODE)
     # TODO: water Bottle adjust
     # bob.adjustToWater()
 
@@ -172,19 +174,19 @@ def task7():
 
     bob.lineFollowing(2)  # go past between the indicating blocks
     bob.putDown()  # put down water bottle
+    bob.adjustToWater()
 
-    bob.lineFollowing(3, isForward=False)
-
-    bob.lineFollowing(2)
-    bob.turnForward(90)
-
+    bob.turnForward(180)
     bob.armDown()
+
+    bob.lineFollowing(1, speed=SLOWMODE)
+    bob.turnForward(-90)
 
     # TODO: the arm has to be lowered at this point
 
     tableDir = -1  # negative is left
     for _ in range(2):
-        indColor = bob.lineFollowing(100, lookForColor=True,
+        indColor = bob.lineFollowing(100, speed=SLOWMODE, lookForColor=True,
                                      lookingSensor=objectDetector, colors=[Color.RED, Color.GREEN])
 
         print(indColor)
@@ -199,14 +201,14 @@ def task7():
         bob.turnForward(180)
 
     print("out of function")
-    bob.lineFollowing(1)
+    bob.lineFollowing(1, speed=SLOWMODE)
     bob.turnForward(-90 * tableDir)  # opposite of table dir
     # out of decision path
 
     # pull claw back up
     bob.armUp()
 
-    bob.lineFollowing(1)
+    bob.lineFollowing(1, speed=SLOWMODE)
     bob.pickUp()
     bob.turnForward(-90 * tableDir)  # room dir is opposite of table dir
 

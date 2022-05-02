@@ -7,13 +7,13 @@ from pybricks.tools import wait
 from time import clock
 
 
-def lineFollowingReflection(leftWheel, rightWheel, countTarget, isForward=True, lookForColor=False, lookingSensor=None, colors=None, terminalTime=1000):
+def lineFollowingReflection(leftWheel, rightWheel, countTarget, speed=4, isForward=True, lookForColor=False, lookingSensor=None, colors=None, terminalTime=1000):
     lightSensorLeft = ColorSensor(Port.S4)
     lightSensorRight = ColorSensor(Port.S1)
 
     count = 0
     canCount = True
-    speedScale = 4
+    speedScale = speed
     lineFollowingMode = True
     initialTime = clock()
 
@@ -42,12 +42,12 @@ def lineFollowingReflection(leftWheel, rightWheel, countTarget, isForward=True, 
             # if black, white it's swaying to the right, hence should turn left
             if leftLight < WHITE and rightLight >= WHITE:
                 leftWheel.run(70 * speedScale)
-                rightWheel.run(120 * speedScale)
+                rightWheel.run(130 * speedScale)
                 canCount = True
 
             # if white, black, it's swaying to the left, hence should turn right
             if leftLight >= WHITE and rightLight < WHITE:
-                leftWheel.run(120 * speedScale)
+                leftWheel.run(130 * speedScale)
                 rightWheel.run(70 * speedScale)
                 canCount = True
 
@@ -56,7 +56,7 @@ def lineFollowingReflection(leftWheel, rightWheel, countTarget, isForward=True, 
                 count += 1
                 print(count)
                 canCount = False
-        else:
+        else:  # for going backwards
             # go straight
             if leftLight >= WHITE and rightLight >= WHITE:
                 leftWheel.run(100 * speedScale)
@@ -65,14 +65,15 @@ def lineFollowingReflection(leftWheel, rightWheel, countTarget, isForward=True, 
 
             # if black, white it's swaying to the right, hence should turn left
             if leftLight < WHITE and rightLight >= WHITE:
-                leftWheel.run(120 * speedScale)
-                rightWheel.run(70 * speedScale)
+                leftWheel.run(90 * speedScale)
+                rightWheel.run(110 * speedScale)
                 canCount = True
 
             # if white, black, it's swaying to the left, hence should turn right
             if leftLight >= WHITE and rightLight < WHITE:
-                leftWheel.run(70 * speedScale)
-                rightWheel.run(120 * speedScale)
+                print("turn Left!!!")
+                leftWheel.run(110 * speedScale)
+                rightWheel.run(90 * speedScale)
                 canCount = True
 
             # counting the intersections it passes through
