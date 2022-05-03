@@ -14,6 +14,9 @@ class Robot:
         self.armPower = 500
         self.armDegree = 180
 
+        self.SLOWMODE = 3
+        self.DEFAULTMODE = 4
+
     def lineFollowing(self, countTarget, speed=4, isForward=True, lookForColor=False, lookingSensor=None, colors=None, terminalTime=1000):
         return lineFollowingReflection(self.leftWheel, self.rightWheel, countTarget, speed=speed, isForward=isForward,
                                        lookForColor=lookForColor, lookingSensor=lookingSensor, colors=colors, terminalTime=terminalTime)
@@ -86,6 +89,16 @@ class Robot:
         self.leftWheel.run_angle(100, 100, wait=False)
         self.rightWheel.run_angle(100, 100, wait=True)
 
+    def adjustForPickingUp(self):
+        # push until it touches Bob
+        # change 360 degress later
+        self.leftWheel.run_angle(200, 270, wait=False)
+        self.rightWheel.run_angle(200, 270, wait=True)
+
+        # go back as needed
+        self.leftWheel.run_angle(200,  -80, wait=False)
+        self.rightWheel.run_angle(200, -80, wait=True)
+
     def backFromTable(self):
         self.leftWheel.run_angle(100, -150, wait=False)
         self.rightWheel.run_angle(100, -150, wait=True)
@@ -99,6 +112,13 @@ class Robot:
         self.armDown()
         self.clawClose()
         self.armUp()
+
+    def pickUpWithAdjust(self):
+        self.lineFollowing(1, speed=self.SLOWMODE)
+
+        self.adjustForPickingUp()
+
+        self.pickUp()
 
     def putDown(self):
         self.armDown()

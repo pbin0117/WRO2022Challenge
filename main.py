@@ -208,11 +208,14 @@ def task7():
     # pull claw back up
     bob.armUp()
 
-    bob.lineFollowing(1, speed=SLOWMODE)
-    bob.pickUp()
+    bob.pickUpWithAdjust()
+
+    bob.lineFollowing(1, isForward=False, speed=SLOWMODE)
+
     bob.turnForward(-90 * tableDir)  # room dir is opposite of table dir
 
-    bob.lineFollowing(1000, lookForColor=True, colors=[Color.RED, Color.GREEN])
+    bob.lineFollowing(1000, lookForColor=True, colors=[
+                      Color.RED, Color.GREEN], speed=SLOWMODE)
 
     bob.adjustToTable(tableDir)
 
