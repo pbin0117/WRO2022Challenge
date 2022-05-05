@@ -96,8 +96,8 @@ class Robot:
         self.rightWheel.run_angle(200, 270, wait=True)
 
         # go back as needed
-        self.leftWheel.run_angle(200,  -80, wait=False)
-        self.rightWheel.run_angle(200, -80, wait=True)
+        self.leftWheel.run_angle(200,  -95, wait=False)
+        self.rightWheel.run_angle(200, -95, wait=True)
 
     def backFromTable(self):
         self.leftWheel.run_angle(100, -150, wait=False)
@@ -135,3 +135,8 @@ class Robot:
     def testClaw(self):
         self.clawClose()
         self.clawOpen()
+
+    def testArm(self):
+        self.armDown()
+        wait(5000)
+        self.armUp()

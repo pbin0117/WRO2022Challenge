@@ -177,6 +177,7 @@ def task7():
     bob.adjustToWater()
 
     bob.turnForward(180)
+
     bob.armDown()
 
     bob.lineFollowing(1, speed=SLOWMODE)
@@ -193,12 +194,14 @@ def task7():
         if indColor == Color.GREEN:  # Water bottle room!
             print("Water bottle")
             bob.turnForward(180)
+
             break
 
         if indColor == Color.RED:  # frick
             tableDir = 1  # positive is right
 
         bob.turnForward(180)
+        bob.adjustToLaundry()
 
     print("out of function")
     bob.lineFollowing(1, speed=SLOWMODE)
@@ -212,15 +215,15 @@ def task7():
 
     bob.lineFollowing(1, isForward=False, speed=SLOWMODE)
 
-    bob.turnForward(-90 * tableDir)  # room dir is opposite of table dir
+    bob.turnBackward(-90 * tableDir)  # room dir is opposite of table dir
 
     bob.lineFollowing(1000, lookForColor=True, colors=[
-                      Color.RED, Color.GREEN], speed=SLOWMODE)
+                      Color.RED, Color.GREEN], speed=2)
 
     bob.adjustToTable(tableDir)
 
     bob.clawOpen()
 
 
-bob.clawClose()
-task7()
+def task8():  # task 7 + task 4
+    task7()
