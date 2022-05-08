@@ -96,7 +96,7 @@ class Robot:
         self.rightWheel.run_angle(200, 270, wait=True)
 
         # go back as needed
-        self.leftWheel.run_angle(200,  -95, wait=False)
+        self.leftWheelinel.run_angle(200,  -95, wait=False)
         self.rightWheel.run_angle(200, -95, wait=True)
 
     def backFromTable(self):

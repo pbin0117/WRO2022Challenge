@@ -158,7 +158,7 @@ def task6():  # for the ball
 
 
 def task7():
-
+    """
     bob.lineFollowing(1, speed=SLOWMODE)
     # TODO: water Bottle adjust
     # bob.adjustToWater()
@@ -222,8 +222,39 @@ def task7():
 
     bob.adjustToTable(tableDir)
 
-    bob.clawOpen()
+    bob.clawOpen()  # placed the water bottle on the table
+    """
+    # Remove this later
+    tableDir = 1
+
+    bob.backFromTable()  # 1
+
+    bob.turnForward(90 * tableDir)  # 3
+    # bob.clawClose()
+    bob.lineFollowing(1)
+    bob.turnForward(90 * tableDir)
+
+    print("out of task 7")
 
 
 def task8():  # task 7 + task 4
     task7()
+
+    bob.lineFollowing(2)
+    bob.turnForward(90)
+    # have to do a zigzag cause it isn't two black lines
+    bob.lineFollowing(100, terminalTime=timeTillCenter)
+
+    bob.turnForward(-90)
+    bob.lineFollowing(100, terminalTime=timeTillCenter/2)
+    bob.turnForward(90)
+
+    bob.lineFollowing(1, speed=bob.SLOWMODE)
+    bob.turnForward(-90)
+
+    # out of the zigzag
+
+    bob.lineFollowing(1)  # in front of the waterbottles
+
+
+task8()
