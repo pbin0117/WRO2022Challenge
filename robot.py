@@ -82,6 +82,10 @@ class Robot:
         self.leftWheel.run_angle(100, -90, wait=False)
         self.rightWheel.run_angle(100, -90, wait=True)
 
+    def adjustPickWater(self):
+        self.leftWheel.run_angle(100, 300, wait=False)
+        self.rightWheel.run_angle(100, 300, wait=True)
+
     def adjustToTable(self, direction):  # right is +
         self.leftWheel.run_angle(300, 300, wait=False)
         self.rightWheel.run_angle(300, 300, wait=True)
@@ -96,7 +100,7 @@ class Robot:
         self.rightWheel.run_angle(200, 270, wait=True)
 
         # go back as needed
-        self.leftWheelinel.run_angle(200,  -95, wait=False)
+        self.leftWheel.run_angle(200,  -95, wait=False)
         self.rightWheel.run_angle(200, -95, wait=True)
 
     def backFromTable(self):

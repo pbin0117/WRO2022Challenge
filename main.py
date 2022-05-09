@@ -79,12 +79,16 @@ def task3():
 
 
 def task4():  # put the water bottle on the table
+    """
+    remove when only doing task 4
     bob.lineFollowing(1)
     # TODO: water Bottle adjust
     bob.adjustToWater()
 
     bob.pickUp()
     bob.turnForward(-90)
+
+    """
 
     # Water path with the nurse
 
@@ -158,7 +162,7 @@ def task6():  # for the ball
 
 
 def task7():
-    """
+
     bob.lineFollowing(1, speed=SLOWMODE)
     # TODO: water Bottle adjust
     # bob.adjustToWater()
@@ -223,14 +227,12 @@ def task7():
     bob.adjustToTable(tableDir)
 
     bob.clawOpen()  # placed the water bottle on the table
-    """
-    # Remove this later
-    tableDir = 1
 
     bob.backFromTable()  # 1
 
     bob.turnForward(90 * tableDir)  # 3
-    # bob.clawClose()
+    bob.clawClose()
+    bob.outtaRoom()
     bob.lineFollowing(1)
     bob.turnForward(90 * tableDir)
 
@@ -246,15 +248,21 @@ def task8():  # task 7 + task 4
     bob.lineFollowing(100, terminalTime=timeTillCenter)
 
     bob.turnForward(-90)
-    bob.lineFollowing(100, terminalTime=timeTillCenter/2)
-    bob.turnForward(90)
-
-    bob.lineFollowing(1, speed=bob.SLOWMODE)
-    bob.turnForward(-90)
-
-    # out of the zigzag
 
     bob.lineFollowing(1)  # in front of the waterbottles
+
+    bob.adjustPickWater()
+    bob.turnForward(85)
+
+    bob.lineFollowing(1, speed=bob.SLOWMODE)
+
+    bob.adjustForPickingUp()
+    bob.pickUp()
+
+    bob.lineFollowing(1, isForward=False)
+    bob.turnForward(-90)
+
+    task4()
 
 
 task8()
