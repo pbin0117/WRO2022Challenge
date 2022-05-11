@@ -168,13 +168,13 @@ def task7():
     # bob.adjustToWater()
 
     bob.pickUp()
-    bob.turnForward(90)
+    bob.turnAfterLineFollow(1)
 
     bob.lineFollowing(1)
-    bob.turnForward(90)
+    bob.turnAfterLineFollow(1)
 
     bob.lineFollowing(1)
-    bob.turnForward(-90)
+    bob.turnAfterLineFollow(-1)
 
     bob.lineFollowing(2)  # go past between the indicating blocks
     bob.putDown()  # put down water bottle
@@ -185,7 +185,7 @@ def task7():
     bob.armDown()
 
     bob.lineFollowing(1, speed=SLOWMODE)
-    bob.turnForward(-90)
+    bob.turnAfterLineFollow(-1)
 
     # TODO: the arm has to be lowered at this point
 
@@ -205,11 +205,10 @@ def task7():
             tableDir = 1  # positive is right
 
         bob.turnForward(180)
-        bob.adjustToLaundry()
 
     print("out of function")
     bob.lineFollowing(1, speed=SLOWMODE)
-    bob.turnForward(-90 * tableDir)  # opposite of table dir
+    bob.turnAfterLineFollow(-tableDir)  # opposite of table dir
     # out of decision path
 
     # pull claw back up
@@ -219,7 +218,7 @@ def task7():
 
     bob.lineFollowing(1, isForward=False, speed=SLOWMODE)
 
-    bob.turnBackward(-90 * tableDir)  # room dir is opposite of table dir
+    bob.turnAfterLineFollow(-tableDir)  # room dir is opposite of table dir
 
     bob.lineFollowing(1000, lookForColor=True, colors=[
                       Color.RED, Color.GREEN], speed=2)
@@ -230,11 +229,11 @@ def task7():
 
     bob.backFromTable()  # 1
 
-    bob.turnForward(90 * tableDir)  # 3
+    bob.newTurnForward(tableDir)  # 3
     bob.clawClose()
     bob.outtaRoom()
     bob.lineFollowing(1)
-    bob.turnForward(90 * tableDir)
+    bob.turnAfterLineFollow(tableDir)
 
     print("out of task 7")
 
@@ -265,4 +264,4 @@ def task8():  # task 7 + task 4
     task4()
 
 
-task8()
+task7()
