@@ -23,7 +23,7 @@ objectDetector = ColorSensor(Port.S2)
 
 bob = Robot(leftWheel, rightWheel, armLift, claw, objectDetector)
 
-timeTillCenter = 1
+timeTillCenter = 1.3
 withWaterBottleDegree = 80
 SLOWMODE = 3
 DEFAULTMODE = 4
@@ -185,7 +185,7 @@ def task7():
     bob.armDown()
 
     bob.lineFollowing(1, speed=SLOWMODE)
-    bob.turnAfterLineFollow(-1)
+    bob.turnForward(-90)
 
     # TODO: the arm has to be lowered at this point
 
@@ -197,14 +197,14 @@ def task7():
         print(indColor)
         if indColor == Color.GREEN:  # Water bottle room!
             print("Water bottle")
-            bob.turnForward(180)
+            bob.newTurnForward(2)
 
             break
 
         if indColor == Color.RED:  # frick
             tableDir = 1  # positive is right
 
-        bob.turnForward(180)
+        bob.newTurnForward(2)
 
     print("out of function")
     bob.lineFollowing(1, speed=SLOWMODE)
@@ -242,16 +242,16 @@ def task8():  # task 7 + task 4
     task7()
 
     bob.lineFollowing(2)
-    bob.turnForward(90)
+    bob.turnAfterLineFollow(1)
     # have to do a zigzag cause it isn't two black lines
     bob.lineFollowing(100, terminalTime=timeTillCenter)
 
-    bob.turnForward(-90)
+    bob.newTurnForward(-1)
 
     bob.lineFollowing(1)  # in front of the waterbottles
 
     bob.adjustPickWater()
-    bob.turnForward(85)
+    bob.newTurnForward(1)
 
     bob.lineFollowing(1, speed=bob.SLOWMODE)
 
@@ -259,9 +259,9 @@ def task8():  # task 7 + task 4
     bob.pickUp()
 
     bob.lineFollowing(1, isForward=False)
-    bob.turnForward(-90)
+    bob.turnAfterLineFollow(-1)
 
     task4()
 
 
-task7()
+task8()

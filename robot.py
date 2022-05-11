@@ -23,12 +23,12 @@ class Robot:
 
     def clawOpen(self):
         self.claw.run(self.clawPower - 200)
-        wait(1500)  # 1000 works for the laundry
+        wait(1200)  # 1000 works for the laundry
         self.claw.stop()
 
     def clawClose(self):
         self.claw.run(-self.clawPower)
-        wait(1500)
+        wait(1200)
         self.claw.stop()
 
     def clawGrasp(self):
