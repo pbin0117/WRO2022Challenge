@@ -23,7 +23,7 @@ objectDetector = ColorSensor(Port.S2)
 
 bob = Robot(leftWheel, rightWheel, armLift, claw, objectDetector)
 
-timeTillCenter = 1.3
+timeTillCenter = 1
 withWaterBottleDegree = 80
 SLOWMODE = 3
 DEFAULTMODE = 4
@@ -168,13 +168,13 @@ def task7():
     # bob.adjustToWater()
 
     bob.pickUp()
-    bob.turnForward(90)
+    bob.turnAfterLineFollow(1)
 
     bob.lineFollowing(1)
-    bob.turnForward(90)
+    bob.turnAfterLineFollow(1)
 
     bob.lineFollowing(1)
-    bob.turnForward(-90)
+    bob.turnAfterLineFollow(-1)
 
     bob.lineFollowing(2)  # go past between the indicating blocks
     bob.putDown()  # put down water bottle
@@ -185,7 +185,7 @@ def task7():
     bob.armDown()
 
     bob.lineFollowing(1, speed=SLOWMODE)
-    bob.turnForward(-90)
+    bob.turnAfterLineFollow(-1)
 
     # TODO: the arm has to be lowered at this point
 
@@ -197,23 +197,18 @@ def task7():
         print(indColor)
         if indColor == Color.GREEN:  # Water bottle room!
             print("Water bottle")
-            bob.newTurnForward(2)
+            bob.turnForward(180)
 
             break
 
         if indColor == Color.RED:  # frick
             tableDir = 1  # positive is right
 
-<<<<<<< HEAD
-        bob.newTurnForward(2)
-=======
         bob.turnForward(180)
-        bob.adjustToLaundry()
->>>>>>> parent of aae1724 (added turning by angles + changed task 7 with the new turn)
 
     print("out of function")
     bob.lineFollowing(1, speed=SLOWMODE)
-    bob.turnForward(-90 * tableDir)  # opposite of table dir
+    bob.turnAfterLineFollow(-tableDir)  # opposite of table dir
     # out of decision path
 
     # pull claw back up
@@ -223,7 +218,7 @@ def task7():
 
     bob.lineFollowing(1, isForward=False, speed=SLOWMODE)
 
-    bob.turnBackward(-90 * tableDir)  # room dir is opposite of table dir
+    bob.turnAfterLineFollow(-tableDir)  # room dir is opposite of table dir
 
     bob.lineFollowing(1000, lookForColor=True, colors=[
                       Color.RED, Color.GREEN], speed=2)
@@ -234,11 +229,11 @@ def task7():
 
     bob.backFromTable()  # 1
 
-    bob.turnForward(90 * tableDir)  # 3
+    bob.newTurnForward(tableDir)  # 3
     bob.clawClose()
     bob.outtaRoom()
     bob.lineFollowing(1)
-    bob.turnForward(90 * tableDir)
+    bob.turnAfterLineFollow(tableDir)
 
     print("out of task 7")
 
@@ -247,16 +242,16 @@ def task8():  # task 7 + task 4
     task7()
 
     bob.lineFollowing(2)
-    bob.turnAfterLineFollow(1)
+    bob.turnForward(90)
     # have to do a zigzag cause it isn't two black lines
     bob.lineFollowing(100, terminalTime=timeTillCenter)
 
-    bob.newTurnForward(-1)
+    bob.turnForward(-90)
 
     bob.lineFollowing(1)  # in front of the waterbottles
 
     bob.adjustPickWater()
-    bob.newTurnForward(1)
+    bob.turnForward(85)
 
     bob.lineFollowing(1, speed=bob.SLOWMODE)
 
@@ -264,9 +259,9 @@ def task8():  # task 7 + task 4
     bob.pickUp()
 
     bob.lineFollowing(1, isForward=False)
-    bob.turnAfterLineFollow(-1)
+    bob.turnForward(-90)
 
     task4()
 
 
-task8()
+task7()
