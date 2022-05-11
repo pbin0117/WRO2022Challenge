@@ -58,23 +58,6 @@ class Robot:
         self.leftWheel.stop()
         self.rightWheel.stop()
 
-    def adjustForTurningForward(self):
-        # call this function after linefollowing to turn
-        # needed because the robot turns on the spot
-
-        self.leftWheel.run_angle(300, 100, wait=False)
-        self.rightWheel.run_angle(300, 100, wait=True)
-
-    def newTurnForward(self, angle):
-        # angle: -1 = left, +1 = right
-
-        self.leftWheel.run_angle(200, 230 * angle, wait=False)
-        self.rightWheel.run_angle(200, -230 * angle, wait=True)
-
-    def turnAfterLineFollow(self, angle):
-        self.adjustForTurningForward()
-        self.newTurnForward(angle)
-
     def turnBackward(self, angle):
         angleAdjustment = 0.8
 

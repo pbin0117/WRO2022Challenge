@@ -168,13 +168,13 @@ def task7():
     # bob.adjustToWater()
 
     bob.pickUp()
-    bob.turnAfterLineFollow(1)
+    bob.turnForward(90)
 
     bob.lineFollowing(1)
-    bob.turnAfterLineFollow(1)
+    bob.turnForward(90)
 
     bob.lineFollowing(1)
-    bob.turnAfterLineFollow(-1)
+    bob.turnForward(-90)
 
     bob.lineFollowing(2)  # go past between the indicating blocks
     bob.putDown()  # put down water bottle
@@ -204,11 +204,16 @@ def task7():
         if indColor == Color.RED:  # frick
             tableDir = 1  # positive is right
 
+<<<<<<< HEAD
         bob.newTurnForward(2)
+=======
+        bob.turnForward(180)
+        bob.adjustToLaundry()
+>>>>>>> parent of aae1724 (added turning by angles + changed task 7 with the new turn)
 
     print("out of function")
     bob.lineFollowing(1, speed=SLOWMODE)
-    bob.turnAfterLineFollow(-tableDir)  # opposite of table dir
+    bob.turnForward(-90 * tableDir)  # opposite of table dir
     # out of decision path
 
     # pull claw back up
@@ -218,7 +223,7 @@ def task7():
 
     bob.lineFollowing(1, isForward=False, speed=SLOWMODE)
 
-    bob.turnAfterLineFollow(-tableDir)  # room dir is opposite of table dir
+    bob.turnBackward(-90 * tableDir)  # room dir is opposite of table dir
 
     bob.lineFollowing(1000, lookForColor=True, colors=[
                       Color.RED, Color.GREEN], speed=2)
@@ -229,11 +234,11 @@ def task7():
 
     bob.backFromTable()  # 1
 
-    bob.newTurnForward(tableDir)  # 3
+    bob.turnForward(90 * tableDir)  # 3
     bob.clawClose()
     bob.outtaRoom()
     bob.lineFollowing(1)
-    bob.turnAfterLineFollow(tableDir)
+    bob.turnForward(90 * tableDir)
 
     print("out of task 7")
 
