@@ -225,43 +225,8 @@ def task7():
 
     bob.adjustToTable(tableDir)
 
-    bob.clawOpen()  # placed the water bottle on the table
-
-    bob.backFromTable()  # 1
-
-    bob.newTurnForward(tableDir)  # 3
-    bob.clawClose()
-    bob.outtaRoom()
-    bob.lineFollowing(1)
-    bob.turnAfterLineFollow(tableDir)
-
-    print("out of task 7")
+    bob.clawOpen()
 
 
 def task8():  # task 7 + task 4
     task7()
-
-    bob.lineFollowing(2)
-    bob.turnForward(90)
-    # have to do a zigzag cause it isn't two black lines
-    bob.lineFollowing(100, terminalTime=timeTillCenter)
-
-    bob.turnForward(-90)
-
-    bob.lineFollowing(1)  # in front of the waterbottles
-
-    bob.adjustPickWater()
-    bob.turnForward(85)
-
-    bob.lineFollowing(1, speed=bob.SLOWMODE)
-
-    bob.adjustForPickingUp()
-    bob.pickUp()
-
-    bob.lineFollowing(1, isForward=False)
-    bob.turnForward(-90)
-
-    task4()
-
-
-task7()
