@@ -80,7 +80,7 @@ def task3():
 
 def task4():  # put the water bottle on the table
     """
-    remove when only doing task 4
+    remove the comments when only doing task 4
     bob.lineFollowing(1)
     # TODO: water Bottle adjust
     bob.adjustToWater()

@@ -74,6 +74,18 @@ class Robot:
         self.leftWheel.stop()
         self.rightWheel.stop()
 
+    def newTurnForward(self, angle):
+        self.leftWheel.run_angle(200, 220 * angle / 90, wait=False)
+        self.rightWheel.run_angle(200, -220 * angle / 90, wait=True)
+
+    def turnAfterLineFollow(self, angle):
+        # have to adjust by going forward
+        # because the pivot point (the wheels) are behind the sensors.
+        self.leftWheel.run_angle(200, 100, wait=False)
+        self.rightWheel.run_angle(200, 100, wait=True)
+
+        self.newTurnForward(angle)
+
     def adjustToLaundry(self):
         self.leftWheel.run_angle(200, 90, wait=False)
         self.rightWheel.run_angle(200, 90, wait=True)
