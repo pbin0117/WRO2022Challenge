@@ -168,13 +168,13 @@ def task7():
     # bob.adjustToWater()
 
     bob.pickUp()
-    bob.turnAfterLineFollow(1)
+    bob.turnForward(90)
 
     bob.lineFollowing(1)
-    bob.turnAfterLineFollow(1)
+    bob.turnForward(90)
 
     bob.lineFollowing(1)
-    bob.turnAfterLineFollow(-1)
+    bob.turnForward(-90)
 
     bob.lineFollowing(2)  # go past between the indicating blocks
     bob.putDown()  # put down water bottle
@@ -185,7 +185,7 @@ def task7():
     bob.armDown()
 
     bob.lineFollowing(1, speed=SLOWMODE)
-    bob.turnAfterLineFollow(-1)
+    bob.turnForward(-90)
 
     # TODO: the arm has to be lowered at this point
 
@@ -205,10 +205,11 @@ def task7():
             tableDir = 1  # positive is right
 
         bob.turnForward(180)
+        bob.adjustToLaundry()
 
     print("out of function")
     bob.lineFollowing(1, speed=SLOWMODE)
-    bob.turnAfterLineFollow(-tableDir)  # opposite of table dir
+    bob.turnForward(-90 * tableDir)  # opposite of table dir
     # out of decision path
 
     # pull claw back up
@@ -218,15 +219,50 @@ def task7():
 
     bob.lineFollowing(1, isForward=False, speed=SLOWMODE)
 
-    bob.turnAfterLineFollow(-tableDir)  # room dir is opposite of table dir
+    bob.turnBackward(-90 * tableDir)  # room dir is opposite of table dir
 
     bob.lineFollowing(1000, lookForColor=True, colors=[
                       Color.RED, Color.GREEN], speed=2)
 
     bob.adjustToTable(tableDir)
 
-    bob.clawOpen()
+    bob.clawOpen()  # placed the water bottle on the table
+
+    bob.backFromTable()  # 1
+
+    bob.turnForward(90 * tableDir)  # 3
+    bob.clawClose()
+    bob.outtaRoom()
+    bob.lineFollowing(1)
+    bob.turnForward(90 * tableDir)
+
+    print("out of task 7")
 
 
 def task8():  # task 7 + task 4
     task7()
+
+    bob.lineFollowing(2)
+    bob.turnForward(90)
+    # have to do a zigzag cause it isn't two black lines
+    bob.lineFollowing(100, terminalTime=timeTillCenter)
+
+    bob.turnForward(-90)
+
+    bob.lineFollowing(1)  # in front of the waterbottles
+
+    bob.adjustPickWater()
+    bob.turnForward(85)
+
+    bob.lineFollowing(1, speed=bob.SLOWMODE)
+
+    bob.adjustForPickingUp()
+    bob.pickUp()
+
+    bob.lineFollowing(1, isForward=False)
+    bob.turnForward(-90)
+
+    task4()
+
+
+task8()
