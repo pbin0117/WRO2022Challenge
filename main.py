@@ -205,7 +205,6 @@ def task7():
             tableDir = 1  # positive is right
 
         bob.turnForward(180)
-        bob.adjustToLaundry()
 
     print("out of function")
     bob.lineFollowing(1, speed=SLOWMODE)
