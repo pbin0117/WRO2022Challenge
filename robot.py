@@ -26,9 +26,12 @@ class Robot:
         wait(1200)  # 1000 works for the laundry
         self.claw.stop()
 
-    def clawClose(self):
+    def clawClose(self, extra=False):
         self.claw.run(-self.clawPower)
         wait(1200)
+        if extra:
+            wait(500)
+
         self.claw.stop()
 
     def clawGrasp(self):
@@ -86,6 +89,14 @@ class Robot:
 
         self.newTurnForward(angle)
 
+    def adjustAfterLineFollow(self):
+        self.leftWheel.run_angle(200, 90, wait=False)
+        self.rightWheel.run_angle(200, 90, wait=True)
+
+    def getOutofBB(self):
+        self.leftWheel.run_angle(200, 30, wait=False)
+        self.rightWheel.run_angle(200, 30, wait=True)
+
     def adjustToLaundry(self):
         self.leftWheel.run_angle(200, 90, wait=False)
         self.rightWheel.run_angle(200, 90, wait=True)
@@ -123,10 +134,10 @@ class Robot:
         self.leftWheel.run_angle(300, 300, wait=False)
         self.rightWheel.run_angle(300, 300, wait=True)
 
-    def pickUp(self):
+    def pickUp(self, extra1=False):
         self.clawOpen()
         self.armDown()
-        self.clawClose()
+        self.clawClose(extra=extra1)
         self.armUp()
 
     def pickUpWithAdjust(self):

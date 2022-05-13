@@ -95,7 +95,7 @@ def task4():  # put the water bottle on the table
     bob.lineFollowing(1)
     bob.turnForward(-90)
 
-    bob.lineFollowing(1)
+    bob.lineFollowing(1, speed=bob.SLOWMODE)
     bob.turnForward(90)
 
     bob.lineFollowing(2)
@@ -123,16 +123,17 @@ def task4():  # put the water bottle on the table
 def task5():
     bob.lineFollowing(1)  # 4
     bob.turnForward(90)   # 5
-    bob.lineFollowing(1)  # 6
+    bob.lineFollowing(1, speed=bob.SLOWMODE)  # 6
+
     bob.turnForward(-90)  # 7
     print("time to pick up")
-    bob.lineFollowing(100, lookForColor=True,
+    bob.lineFollowing(100, speed=bob.SLOWMODE, lookForColor=True,
                       lookingSensor=objectDetector, colors=[Color.GREEN])
 
     # print("arrived!")
     bob.armUp()
     bob.adjustToLaundry()
-    bob.pickUp()
+    bob.pickUp(extra1=True)
 
     bob.lineFollowing(1, isForward=False)
     bob.turnBackward(90)
@@ -205,9 +206,11 @@ def task7():
             tableDir = 1  # positive is right
 
         bob.turnForward(180)
+        bob.getOutofBB()
 
     print("out of function")
     bob.lineFollowing(1, speed=SLOWMODE)
+    bob.adjustAfterLineFollow()
     bob.turnForward(-90 * tableDir)  # opposite of table dir
     # out of decision path
 
@@ -251,7 +254,7 @@ def task8():  # task 7 + task 4
     bob.lineFollowing(1)  # in front of the waterbottles
 
     bob.adjustPickWater()
-    bob.turnForward(85)
+    bob.turnForward(80)
 
     bob.lineFollowing(1, speed=bob.SLOWMODE)
 
