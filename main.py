@@ -247,9 +247,10 @@ def task8():  # task 7 + task 4
     bob.lineFollowing(2)
     bob.turnForward(90)
     # have to do a zigzag cause it isn't two black lines
-    bob.lineFollowing(100, speed=bob.SLOWMODE, terminalTime=timeTillCenter)
+    bob.lineFollowing(100, speed=bob.SLOWMODE,
+                      terminalTime=timeTillCenter + 0.3)
 
-    bob.turnForward(-100)
+    bob.turnForward(-95)
 
     bob.lineFollowing(1)  # in front of the waterbottles
 
