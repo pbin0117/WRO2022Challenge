@@ -109,6 +109,10 @@ class Robot:
         self.leftWheel.run_angle(100, 300, wait=False)
         self.rightWheel.run_angle(100, 300, wait=True)
 
+    def yaya(self):
+        self.leftWheel.run_angle(300, 280, wait=False)
+        self.rightWheel.run_angle(300, 280, wait=True)
+
     def adjustToTable(self, direction):  # right is +
         self.leftWheel.run_angle(300, 300, wait=False)
         self.rightWheel.run_angle(300, 300, wait=True)

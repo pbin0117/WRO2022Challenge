@@ -268,4 +268,49 @@ def task8():  # task 7 + task 4
     task4()
 
 
-task8()
+def task9():
+    # add in previous task if wanted
+
+    bob.lineFollowing(3)
+    bob.adjustAfterLineFollow()
+    bob.turnForward(90)
+
+    bob.lineFollowing(100, speed=bob.SLOWMODE,
+                      lookForColor=True, colors=[Color.YELLOW])
+    bob.yaya()  # in the yellow room
+    bob.turnForward(90)  # facing the laundry block, hopefully
+
+    bob.armDown()  # have to put it down to detect the green block
+
+    bob.lineFollowing(100, speed=bob.SLOWMODE, lookForColor=True, colors=[
+                      Color.GREEN], lookingSensor=objectDetector)
+
+    # problem
+
+    bob.armUp()
+    bob.adjustToLaundry()
+    bob.pickUp()
+
+    bob.turnForward(90)
+    bob.lineFollowing(1)  # out of the yellow room
+
+    bob.adjustAfterLineFollow()
+    bob.turnForward(-90)
+
+    # rest is similar to task 5
+    bob.lineFollowing(2)
+    bob.turnForward(90)
+    bob.lineFollowing(100, terminalTime=timeTillCenter)
+
+    bob.turnForward(-100)
+
+    bob.lineFollowing(1)
+
+    bob.turnForward(90)
+
+    bob.lineFollowing(1)
+
+    bob.clawOpen()
+
+
+task9()
