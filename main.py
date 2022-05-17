@@ -117,7 +117,8 @@ def task4():  # put the water bottle on the table
     # TODO: GEt on the white first
     bob.outtaRoom()
 
-    task5()
+    # remove when not doing task 9
+    # task5()
 
 
 def task5():
@@ -269,18 +270,27 @@ def task8():  # task 7 + task 4
 
 
 def task9():
-    # add in previous task if wanted
+    # TODO: add all of the adjust after lineFollow where appropriate
+    # in combination with the previous task
+    # ----------------------------
+    task8()
 
+    # ----------------------------
+    # add in previous task if wanted
+    # remove comments if only doing task 9
+    """
     bob.lineFollowing(3)
     bob.adjustAfterLineFollow()
     bob.turnForward(90)
+    """
 
     bob.lineFollowing(100, speed=bob.SLOWMODE,
                       lookForColor=True, colors=[Color.YELLOW])
     bob.yaya()  # in the yellow room
     bob.turnForward(90)  # facing the laundry block, hopefully
 
-    bob.armDown()  # have to put it down to detect the green block
+    # don't need when doing the whole task
+    # bob.armDown()  # have to put it down to detect the green block
 
     bob.lineFollowing(100, speed=bob.SLOWMODE, lookForColor=True, colors=[
                       Color.GREEN], lookingSensor=objectDetector)
@@ -311,6 +321,7 @@ def task9():
     bob.lineFollowing(1)
 
     bob.clawOpen()
+    bob.clawClose()
 
 
 task9()
