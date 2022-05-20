@@ -180,7 +180,7 @@ def task7():
     bob.turnForward(-90)
 
     bob.lineFollowing(2)  # go past between the indicating blocks
-    bob.putDown()  # put down water bottle
+    bob.putDown(clawClose=False)  # put down water bottle
     bob.adjustToWater()
 
     bob.turnForward(180)
@@ -219,7 +219,7 @@ def task7():
     # pull claw back up
     bob.armUp()
 
-    bob.pickUpWithAdjust()
+    bob.pickUpWithAdjust(clawOpen=False)
 
     bob.lineFollowing(1, isForward=False, speed=SLOWMODE)
 

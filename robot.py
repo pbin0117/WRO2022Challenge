@@ -138,24 +138,26 @@ class Robot:
         self.leftWheel.run_angle(300, 300, wait=False)
         self.rightWheel.run_angle(300, 300, wait=True)
 
-    def pickUp(self, extra1=False):
-        self.clawOpen()
+    def pickUp(self, extra1=False, clawOpen=True):
+        if clawOpen:
+            self.clawOpen()
         self.armDown()
         self.clawClose(extra=extra1)
         self.armUp()
 
-    def pickUpWithAdjust(self):
+    def pickUpWithAdjust(self, clawOpen=True):
         self.lineFollowing(1, speed=self.SLOWMODE)
 
         self.adjustForPickingUp()
 
-        self.pickUp()
+        self.pickUp(clawOpen=clawOpen)
 
-    def putDown(self):
+    def putDown(self, clawClose=True):
         self.armDown()
         self.clawOpen()
         self.armUp()
-        self.clawClose()
+        if clawClose:
+            self.clawClose()
 
     # --------- Util Tools ------------"
 
