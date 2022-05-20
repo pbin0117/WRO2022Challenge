@@ -99,6 +99,7 @@ def task4():  # put the water bottle on the table
     bob.turnForward(90)
 
     bob.lineFollowing(2)
+    bob.adjustAfterLineFollow()
     bob.turnForward(-90)
 
     bob.lineFollowing(1000, lookForColor=True, colors=[Color.BLUE])
@@ -111,7 +112,7 @@ def task4():  # put the water bottle on the table
     bob.backFromTable()  # 1
 
     bob.turnForward(90)  # 3
-    bob.armDown()  # 3.1
+    # bob.armDown()  # 3.1
     bob.clawClose()     # 2
 
     # TODO: GEt on the white first
@@ -211,7 +212,7 @@ def task7():
 
     print("out of function")
     bob.lineFollowing(1, speed=SLOWMODE)
-    bob.adjustAfterLineFollow()
+
     bob.turnForward(-90 * tableDir)  # opposite of table dir
     # out of decision path
 
@@ -223,6 +224,7 @@ def task7():
     bob.lineFollowing(1, isForward=False, speed=SLOWMODE)
 
     bob.turnBackward(-90 * tableDir)  # room dir is opposite of table dir
+    bob.adjustAfterLineFollow()
 
     bob.lineFollowing(1000, lookForColor=True, colors=[
                       Color.RED, Color.GREEN], speed=2)
@@ -247,7 +249,7 @@ def task8():  # task 7 + task 4
 
     bob.lineFollowing(2)
     bob.turnForward(90)
-    # have to do a zigzag cause it isn't two black lines
+
     bob.lineFollowing(100, speed=bob.SLOWMODE,
                       terminalTime=timeTillCenter + 0.3)
 
@@ -290,7 +292,7 @@ def task9():
     bob.turnForward(90)  # facing the laundry block, hopefully
 
     # don't need when doing the whole task
-    # bob.armDown()  # have to put it down to detect the green block
+    bob.armDown()  # have to put it down to detect the green block
 
     bob.lineFollowing(100, speed=bob.SLOWMODE, lookForColor=True, colors=[
                       Color.GREEN], lookingSensor=objectDetector)
@@ -299,7 +301,7 @@ def task9():
 
     bob.armUp()
     bob.adjustToLaundry()
-    bob.pickUp()
+    bob.pickUp(extra1=True)
 
     bob.turnForward(90)
     bob.lineFollowing(1)  # out of the yellow room
