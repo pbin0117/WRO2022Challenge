@@ -212,6 +212,7 @@ def task7():
 
     print("out of function")
     bob.lineFollowing(1, speed=SLOWMODE)
+    bob.adjustAfterLineFollow()
 
     bob.turnForward(-90 * tableDir)  # opposite of table dir
     # out of decision path
@@ -251,7 +252,7 @@ def task8():  # task 7 + task 4
     bob.turnForward(90)
 
     bob.lineFollowing(100, speed=bob.SLOWMODE,
-                      terminalTime=timeTillCenter + 0.3)
+                      terminalTime=timeTillCenter + 0.5)
 
     bob.turnForward(-95)
 
@@ -295,7 +296,7 @@ def task9():
     bob.armDown()  # have to put it down to detect the green block
 
     bob.lineFollowing(100, speed=bob.SLOWMODE, lookForColor=True, colors=[
-                      Color.GREEN], lookingSensor=objectDetector)
+                      Color.BLACK], lookingSensor=objectDetector)
 
     # problem
 
@@ -308,6 +309,114 @@ def task9():
 
     bob.adjustAfterLineFollow()
     bob.turnForward(-90)
+
+    # rest is similar to task 5
+    bob.lineFollowing(2)
+    bob.turnForward(90)
+    bob.lineFollowing(100, terminalTime=timeTillCenter)
+
+    bob.turnForward(-100)
+
+    bob.lineFollowing(1)
+
+    bob.turnForward(90)
+
+    bob.lineFollowing(1)
+
+    bob.clawOpen()
+    bob.clawClose()
+
+    self.leftWheel.run_angle(100, -250, wait=False)
+    self.rightWheel.run_angle(100, -250, wait=True)
+    bob.turnForward(180)
+
+    bob.lineFollowing(1000, terminalTime=timeTillCenter+0.3)
+
+
+def task10():
+    bob.lineFollowing(2)  # go past between the indicating blocks
+    bob.putDown()  # put down water bottle
+    bob.adjustToWater()
+
+    bob.turnForward(180)
+
+    bob.armDown()
+
+    bob.lineFollowing(1, speed=SLOWMODE)
+    bob.turnForward(-90)
+
+    # TODO: the arm has to be lowered at this point
+
+    tableDir = -1  # negative is left
+    for _ in range(2):
+        indColor = bob.lineFollowing(100, speed=SLOWMODE, lookForColor=True,
+                                     lookingSensor=objectDetector, colors=[Color.RED, Color.GREEN])
+
+        print(indColor)
+        if indColor == Color.GREEN:  # Water bottle room!
+            print("Water bottle")
+            bob.turnForward(180)
+
+            break
+
+        if indColor == Color.RED:  # frick
+            tableDir = 1  # positive is right
+
+        bob.turnForward(180)
+        bob.getOutofBB()
+
+    print("out of function")
+    bob.lineFollowing(1, speed=SLOWMODE)
+    bob.adjustAfterLineFollow()
+
+    bob.turnForward(-90 * tableDir)  # opposite of table dir
+    # out of decision path
+
+    # pull claw back up
+    bob.armUp()
+
+    bob.pickUpWithAdjust()
+
+    bob.lineFollowing(1, isForward=False, speed=SLOWMODE)
+
+    bob.turnBackward(-100 * tableDir)  # room dir is opposite of table dir
+    bob.adjustAfterLineFollow()
+
+    print(bob.lineFollowing(1000, lookForColor=True, colors=[
+        Color.BLUE, Color.YELLOW], speed=2))
+
+    bob.adjustToTable(tableDir)
+
+    bob.clawOpen()  # placed the water bottle on the table
+
+    bob.backFromTable()  # 1
+    bob.turnForward(90 * tableDir)
+    bob.clawClose()
+    bob.outtaRoom()
+
+    # -----------------------------------------
+    bob.lineFollowing(100, speed=bob.SLOWMODE,
+                      lookForColor=True, colors=[Color.YELLOW, Color.BLUE])
+    bob.yaya()  # in the yellow room
+    bob.turnForward(90 * tableDir)  # facing the laundry block, hopefully
+
+    # don't need when doing the whole task
+    bob.armDown()  # have to put it down to detect the green block
+
+    bob.lineFollowing(100, speed=bob.SLOWMODE, lookForColor=True, colors=[
+                      Color.BLACK], lookingSensor=objectDetector)
+
+    # problem
+
+    bob.armUp()
+    bob.adjustToLaundry()
+    bob.pickUp(extra1=True)
+
+    bob.turnForward(90 * tableDir)
+    bob.lineFollowing(1)  # out of the yellow room
+
+    bob.adjustAfterLineFollow()
+    bob.turnForward(-90 * tableDir)
 
     # rest is similar to task 5
     bob.lineFollowing(2)

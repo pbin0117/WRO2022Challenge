@@ -98,12 +98,12 @@ class Robot:
         self.rightWheel.run_angle(200, 40, wait=True)
 
     def adjustToLaundry(self):
-        self.leftWheel.run_angle(200, 90, wait=False)
-        self.rightWheel.run_angle(200, 90, wait=True)
+        self.leftWheel.run_angle(200, 110, wait=False)
+        self.rightWheel.run_angle(200, 110, wait=True)
 
     def adjustToWater(self):
-        self.leftWheel.run_angle(100, -90, wait=False)
-        self.rightWheel.run_angle(100, -90, wait=True)
+        self.leftWheel.run_angle(100, -100, wait=False)
+        self.rightWheel.run_angle(100, -100, wait=True)
 
     def adjustPickWater(self):
         self.leftWheel.run_angle(100, 280, wait=False)
