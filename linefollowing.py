@@ -96,7 +96,7 @@ def lineFollowingReflection(leftWheel, rightWheel, countTarget, speed=4, isForwa
                         lineFollowingMode = False
             else:
                 for color in colors:
-                    if lightSensorLeft.color() == color:
+                    if lightSensorLeft.color() == color and lightSensorRight.color() == color:
                         print("ayo")
                         finalColor = color
                         lineFollowingMode = False

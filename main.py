@@ -326,14 +326,43 @@ def task9():
     bob.clawOpen()
     bob.clawClose()
 
-    self.leftWheel.run_angle(100, -250, wait=False)
-    self.rightWheel.run_angle(100, -250, wait=True)
+    bob.leftWheel.run_angle(150, -250, wait=False)
+    bob.rightWheel.run_angle(150, -250, wait=True)
     bob.turnForward(180)
 
     bob.lineFollowing(1000, terminalTime=timeTillCenter+0.3)
 
 
 def task10():
+    task7()
+
+    bob.lineFollowing(2)
+    bob.turnForward(90)
+
+    bob.lineFollowing(100, speed=bob.SLOWMODE,
+                      terminalTime=timeTillCenter + 0.5)
+
+    bob.turnForward(-95)
+
+    bob.lineFollowing(1)  # in front of the waterbottles
+
+    bob.adjustPickWater()
+    bob.turnForward(80)
+
+    bob.lineFollowing(1, speed=bob.SLOWMODE)
+
+    bob.adjustForPickingUp()
+    bob.pickUp()
+
+    bob.lineFollowing(1, isForward=False)
+    bob.turnForward(-90)
+# ==============================================
+    bob.lineFollowing(1)
+    bob.turnForward(-90)
+
+    bob.lineFollowing(1, speed=bob.SLOWMODE)
+    bob.turnForward(90)
+# ================================================
     bob.lineFollowing(2)  # go past between the indicating blocks
     bob.putDown()  # put down water bottle
     bob.adjustToWater()
@@ -394,6 +423,11 @@ def task10():
     bob.clawClose()
     bob.outtaRoom()
 
+    bob.lineFollowing(1, speed=bob.SLOWMODE)
+
+    bob.leftWheel.run_angle(200, 360, wait=False)
+    bob.rightWheel.run_angle(200, 360, wait=True)
+
     # -----------------------------------------
     bob.lineFollowing(100, speed=bob.SLOWMODE,
                       lookForColor=True, colors=[Color.YELLOW, Color.BLUE])
@@ -412,7 +446,8 @@ def task10():
     bob.adjustToLaundry()
     bob.pickUp(extra1=True)
 
-    bob.turnForward(90 * tableDir)
+    bob.turnForward(80 * tableDir)
+    bob.outtaRoom()
     bob.lineFollowing(1)  # out of the yellow room
 
     bob.adjustAfterLineFollow()
@@ -434,5 +469,11 @@ def task10():
     bob.clawOpen()
     bob.clawClose()
 
+    bob.leftWheel.run_angle(150, -250, wait=False)
+    bob.rightWheel.run_angle(150, -250, wait=True)
+    bob.turnForward(180)
 
-task9()
+    bob.lineFollowing(1000, terminalTime=timeTillCenter+0.3)
+
+
+task10()
