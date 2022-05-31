@@ -334,6 +334,7 @@ def task9():
 
 
 def task10():
+
     task7()
 
     bob.lineFollowing(2)

@@ -94,12 +94,12 @@ class Robot:
         self.rightWheel.run_angle(200, 90, wait=True)
 
     def getOutofBB(self):
-        self.leftWheel.run_angle(200, 40, wait=False)
-        self.rightWheel.run_angle(200, 40, wait=True)
+        self.leftWheel.run_angle(200, 45, wait=False)
+        self.rightWheel.run_angle(200, 45, wait=True)
 
     def adjustToLaundry(self):
-        self.leftWheel.run_angle(200, 150, wait=False)
-        self.rightWheel.run_angle(200, 150, wait=True)
+        self.leftWheel.run_angle(200, 170, wait=False)
+        self.rightWheel.run_angle(200, 170, wait=True)
 
     def adjustToWater(self):
         self.leftWheel.run_angle(100, -100, wait=False)
@@ -114,8 +114,8 @@ class Robot:
         self.rightWheel.run_angle(300, 260, wait=True)
 
     def adjustToTable(self, direction):  # right is +
-        self.leftWheel.run_angle(300, 300, wait=False)
-        self.rightWheel.run_angle(300, 300, wait=True)
+        self.leftWheel.run_angle(300, 320, wait=False)
+        self.rightWheel.run_angle(300, 320, wait=True)
         self.turnForward(90 * direction)
         self.leftWheel.run_angle(100, 100, wait=False)
         self.rightWheel.run_angle(100, 100, wait=True)
